@@ -31,6 +31,19 @@ void dataScience(char desk[3][3])
 		cout << "\nUser, enter position of X & Y (1...3): ";
 		int x, y;//user coordinates
 		cin >> x >> y;
+
+		if (x < 1 || x >3 || y < 1 || y >3) //checking of user coordinates
+		{
+			cout << "Coordinates is out of range. Repeat new X & Y (1...3): \n";
+			continue;
+		}
+
+		if (desk[x - 1][y - 1] == 'x' || desk[x - 1][y - 1] == 'o') //checking of occupied position for user
+		{
+			cout << "Position is occupied. Repeat new X & Y (1...3): \n";
+			continue;
+		}
+
 		desk[x - 1][y - 1] = 'x';
 
 		//counter of step for stop game

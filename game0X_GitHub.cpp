@@ -6,28 +6,52 @@ using namespace std;
 //Write a "tic-tac-toe" game
 void dataScience(char desk[3][3])
 {
-	cout << "Desk for game \"X\" & \"Y\"\n\n";
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-			cout << "[" << desk[i][j] << "]";
-		cout << endl;
-	}
-
-	cout << "\nUser, enter position of X & Y (1...3): ";
-	int x, y;//user coordinates
-	cin >> x >> y;
-
-	cout << "\nComputer, enter position of X & Y (1...3): ";
-	int x2, y2;//comp coordinates
+	int count = 0;
 	do
 	{
-		x2 = rand() % 3;
-		y2 = rand() % 3;
-	} while (desk[x2][y2] != '-'); //checking of occupied position for computer
-	desk[x2][y2] = 'o';
+		string t;
+		if (count == 0) t = "Start. ";
+		if (count == 9) t = "Finish. ";
+		if (count > 1 && count < 9) t = "Restart. ";
 
-	cout << endl;
+		cout << t << "Step: " << count << endl;
+
+		cout << "Desk for game \"X\" & \"Y\"\n\n";
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+				cout << "[" << desk[i][j] << "]";
+			cout << endl;
+		}
+
+		if (count == pow(3, 2))
+		{
+			break;
+		}
+		cout << "\nUser, enter position of X & Y (1...3): ";
+		int x, y;//user coordinates
+		cin >> x >> y;
+		desk[x - 1][y - 1] = 'x';
+
+		//counter of step for stop game
+		count++;
+		if (count == pow(3, 2))
+		{
+			cout << "\nStop game\n";
+			continue;
+		}
+		cout << "\nComputer, enter position of X & Y (1...3): ";
+		int x2, y2;//comp coordinates
+		do
+		{
+			x2 = rand() % 3;
+			y2 = rand() % 3;
+		} while (desk[x2][y2] != '-'); //checking of occupied position for computer
+		desk[x2][y2] = 'o';
+		//counter of step for stop game
+		count++;
+
+	} while (true);
 }
 
 int main()

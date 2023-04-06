@@ -79,7 +79,7 @@ void dataScience(char desk[3][3])
 
 bool gameWin(char desk[3][3], char s)
 {
-	//gameWin
+	//gameWinner
 	int w0 = 0, w1 = 0, w2 = 0, w3 = 0;
 	for (int i = 0; i < 3; i++)
 	{
@@ -107,6 +107,25 @@ bool gameWin(char desk[3][3], char s)
 	return false;
 }
 
+void printGameResult(char desk[3][3])
+{
+	if (gameWin(desk, 'x'))
+		cout << "\nUser won\n";
+
+	if (gameWin(desk, 'o'))
+		cout << "\nComputer won\n";
+
+	if (gameWin(desk, 'x') == false && gameWin(desk, 'o') == false)
+		cout << "\nNo one has won\n";
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+			cout << "[" << desk[i][j] << "]";
+		cout << endl;
+	}
+}
+
 int main()
 {
 	//Start point
@@ -121,6 +140,7 @@ int main()
 
 	//Function
 	dataScience(desk);
+	printGameResult(desk);
 
 	return 0;
 }

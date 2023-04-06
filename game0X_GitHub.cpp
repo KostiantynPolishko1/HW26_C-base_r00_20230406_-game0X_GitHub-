@@ -7,6 +7,28 @@ using namespace std;
 
 bool gameWin(char desk[3][3], char s);
 
+int checkV()
+{
+	int a;
+	while (true) // the cycle continues until the user enters the correct value
+	{
+		cin >> a;
+		if (cin.fail()) // if the previous extraction was unsuccessful,
+		{
+			cout << "Incorrect input. Enter int value: ";
+			cin.clear(); // then return the cin to 'normal' mode of operation
+			cin.ignore(32767, '\n'); // and remove the previous input values from the input buffer
+		}
+		else // if all is well, return a
+		{
+			cin.ignore(32767, '\n'); // and remove the previous input values from the input buffer
+			return abs(a);
+		}
+	}
+
+	return 0;
+}
+
 void dataScience(char desk[3][3])
 {
 	int count = 0;
@@ -33,7 +55,8 @@ void dataScience(char desk[3][3])
 		}
 		cout << "\nUser, enter position of X & Y (1...3): ";
 		int x, y;//user coordinates
-		cin >> x >> y;
+		x = checkV();
+		y = checkV();
 
 		if (x < 1 || x >3 || y < 1 || y >3) //checking of user coordinates
 		{
@@ -73,6 +96,7 @@ void dataScience(char desk[3][3])
 
 		//counter of step for stop game
 		count++;
+		system("CLS");
 
 	} while (true);
 }
